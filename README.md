@@ -1,1 +1,2 @@
-# assign3-lab118
+# blue-shop
+# run npm-start to start the server
