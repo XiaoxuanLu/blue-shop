@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width">
+      <title>Blue Store</title>
+      <link rel="stylesheet" href="style.css">
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+      <script src="script.js"></script>
+   </head>
+   <body>
+      <!-- Heading and navigation -->
+      <header>
+         <h1>Blue Store</h1>
+         <figure>
+            <img id="icon" src="https://i.ibb.co/RBmFTcM/pngegg.png" height="200" alt="an square icon which is the store logo. The logo depicts a storefront with a red-and-white stripe pattern sunshade and light-blue walls">
+            <figcaption>Store Logo</figcaption>
+         </figure>
+         <nav>
+            <a href="#welcome">Welcoming</a> &nbsp;
+            <a href="#top">Top selling products</a> &nbsp;
+            <a href="#shopping">Shopping basket</a>
+            <a href="#return">Return policy</a>
+            <a href="#contact">Contact</a> &nbsp;
+            <a href="#report">Compatibility report</a>
+            <a href="#copy">Copy right</a> &nbsp;
+         </nav>
+      </header>
+      
+      <!-- welcoming speech-->
+      <section id="welcome">
+         <h3>Welcome to <strong>Blue Store</strong>!</h3>
+         <p>
+            <pre>
+               You've come to 
+            --> the right place <--
+            to buy the  BEST  products! </pre><br>
+            Hope you can have <abbr title="a cool experience">ACE</abbr> at <abbr title="Blue Store"><strong><em>BS</em></strong></abbr>!
+         </p>
+      </section>
+
+      <!-- a table for best selling products-->
+      <section id="top">
+         <h2>Top selling products</h2>
+         <table id="table1">
+            <thead>
+               <tr>
+                  <th>Brand</th>
+                  <th>Model</th>
+                  <th>Os</th>
+                  <th data-sorter="false">Image</th>
+                  <th>Screensize</th>
+               </tr>
+            </thead>
+            <tbody>
+               <!-- <tr>
+                  <td>Apple</td>
+                  <td>Iphone X</td>
+                  <td>IOS</td>
+                  <td>5</td>
+                  <td><img id="iphone" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/IPhone_X_vector.svg/440px-IPhone_X_vector.svg.png" alt="Iphone X"></td>
+                  </tr>
+                  <tr>
+                  <td>Apple</td>
+                  <td>Mac Pro</td>
+                  <td>macOS</td>
+                  <td>13.3</td>
+                  <td><img id ="mac" src="https://tweakers.net/i/GKky9i0GRS16Vey9YG8_9ziysnw=/fit-in/x800/filters:strip_icc():strip_exif()/i/2002784836.jpeg?f=imagegallery" alt="Mac Pro 13.3-inch"></td>
+                  </tr>
+                  <tr>
+                  <td>Apple</td>
+                  <td>Ipad Pro</td>
+                  <td>IOS</td>
+                  <td>11</td>
+                  <td><img id ="ipad" src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-pro-11-select-wifi-silver-202104?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617126593000" alt="Ipad Pro 11-inch"></td>
+                  </tr> -->
+            </tbody>
+            <tbody class="ignore_sort">
+               <tr>
+                  <td colspan="5">
+                     <form>
+                        <div>
+                           <p>When clicking Get item and delete buttons, you only need to input the id. When updating item, you need to fill in all of the inputs and click update item button. </p>
+                        </div>
+                        <div>
+                           <button type="button" id="reset">Reset</button>
+                           <button type="button" id="delete">Delete</button> 
+                        </div>
+                        <div>                
+                           <label for="id">Id:
+                           </label>
+                           <input type="number"
+                              name="id"
+                              min="1" id="id">
+                        </div>
+                        <div>
+                           <label for="brand">Brand:</label>
+                           <input type="text" name="brand" id="brand" required placeholder="Apple">
+                        </div>
+                        <div>
+                           <label for="model">Model:</label>
+                           <input type="text" name="model" id="model" required placeholder="Iphone X">
+                        </div>
+                        <div>
+                           <label for="os">OS:</label>
+                           <input type="text" name="os" id="os" placeholder="IOS">
+                        </div>
+                        <div>
+                           <label for="screensize">Screensize:</label>
+                           <input type="number" min="1" 
+                              step="0.1"
+                              name="screensize" id="screensize" required placeholder="5">
+                        </div>
+                        <div>
+                           <label for="image">Image:</label>
+                           <input type="url" name="image" id="image">
+                        </div>
+                        <input class="blue_submit"
+                           id="add" 
+                           type="button" value="Add item">
+                        <button type="button" id="get">
+                        Get item
+                        </button>
+                        <button type="button" id="update">Update item</button>
+                     </form>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </section>
+      <!-- shoppinng baskets and recommended products-->
+      <section class="shopping_basket">
+         <h2 id="shopping">Shopping basket</h2>
+         <p>Your basket includes: </p>
+         <ul class="baskets">
+            <li>Iphone 13</li>
+            <li>AirPods</li>
+            <li>Mac pro</li>
+         </ul>
+         <p>Recommended products: </p>
+         <ol class="products">
+            <li> Silicone Case</li>
+            <li> Apple Watch Series 7</li>
+            <li> AirTag</li>
+         </ol>
+         <p>Description: </p>
+         <dl>
+            <dt> Silicone Case</dt>
+            <dd>Colorful accessories</dd>
+            <dt> Apple Watch Series 7</dt>
+            <dd>Smartwatch for fitness tracking</dd>
+            <dt> AirTag</dt>
+            <dd>Tracking device</dd>
+         </dl>
+      </section>
+      <section class="return_policy">
+         <h2 id="return">Return policy</h2>
+         <div>
+            <p>Returns are accepted. Unopened products in their original packaging can be returned within 30 days of purchase with a receipt or proof of purchase. We cannot offer you a refund or an exchange if 30 days or more have gone after your purchase.</p>
+            <p>When we get the returned item, we will thoroughly inspect it and advise you through email, within a fair time frame, if you are eligible for a refund. If you are eligible for a return, we will refund your purchase amount and automatically provide a credit to your original form of payment.</p>
+            <p>Only regular-priced products are eligible for refund. Items on sale are non-refundable.</p>
+            <p>To follow-up on the status of your return, please contact us by email.</p>
+            <p>We only exchange goods if they are defective or damaged. In circumstances where you consider that a product is defective, you should promptly contact us by email with details of the product and the defect. </p>
+         </div>
+      </section>
+      <!-- contact information-->
+      <section id="contact">
+         <h2>Contact us</h2>
+         <table id="table2">
+            <caption><strong>Contact Information</strong></caption>
+            <thead>
+               <tr>
+                  <th> </th>
+                  <th>Email</th>
+                  <th>Telephone</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <th>Xiaoxuan</th>
+                  <th><a href="mailto:xx@gmail.com">xx@gmail.com</a></th>
+                  <th><a href="tel:111-111-2222">111-111-2222</a></th>
+               </tr>
+               <tr>
+                  <th>Yiming</th>
+                  <th><a href="mailto:yy@gmail.com">yy@gmail.com</a></th>
+                  <th><a href="tel:222-333-4444">222-333-4444</a></th>
+               </tr>
+            </tbody>
+         </table>
+      </section>
+      <section class="compatibility_report">
+         <h2 id="report">Compatibility report</h2>
+         <div id="test">
+            <h4>Tested in: </h4>
+            <ul>
+               <li>Google Chrome</li>
+               <li>Safari</li>
+               <li>Firefox</li>
+            </ul>
+            <h4>Tested Print Style: </h4>
+            <p>We tested the print style in Google Chrome, Safari, and Firefox by selecting the print option in each browser. We were able to identify some small differences.</p>
+            <p>For example, by examing the printing style in the 'return policy' section, we found that 'widows' and 'orphans' are not supported by Firefox, and although Chrome and Safari support 'widows' and 'orphans', the number of lines left in a new page are different due to different default layout choices in each browser.</p>
+            <p>We also noticed that the default page headers are different in each brower, for instance, Google Chrome includes the time we printed the page, but we have the choice to ask the browsers to not include headers and footers when printing.</p>
+            <h4>Tested Different Screen Sizes: </h4>
+            <p>We tested different sizes by directly changing the height and the width of the browser window and also in the browser's developer mode.</p>
+            <p>All of the elements incluing images can change proportionally as the website size changes since we utilized relative sizes in the CSS file.</p>
+            <p>When we changed the size, the website worked properly in all of the three browsers.</p>
+            <p>In general, we tested print style and different sizes in Chrome, Firefox, and Safari. All of the html and css constructs work except the occasion for 'widows' and 'orphans' in all three browsers.</p>
+         </div>
+      </section>
+      <!-- footer for copyrights-->
+      <footer id="copy">
+         <p>
+            &copy; 2022 Xiaoxuan Lu, Yiming Li
+         </p>
+      </footer>
+   </body>
+</html>

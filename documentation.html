@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Documentation</title>
+
+</head>
+
+<style>
+	body {
+		margin-left: 15%;
+		margin-right: 15%;
+		margin-bottom: 2em;
+	}
+
+	h1 {
+		color: #49B6F4;
+	}
+
+	h2 {
+		color: #0099F2;
+	}
+
+	h3 {
+		color: #007CC2;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+
+	ul {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	code {
+		display: block;
+		background-color: #eee;
+		border-radius: 3px;
+		font-family: courier, monospace;
+		padding: 0 3px;
+		max-width: 100%;
+		overflow-wrap: break-word;
+	}
+
+	.green {
+		color: #03A65A;
+	}
+
+	.red {
+		color: #D93A2B;
+	}
+</style>
+
+<body>
+	<header>
+		<h1>Documentation</h1>
+	</header>
+
+	<h2>Resources Information</h2>
+
+	<li><strong>Base URL</strong>: http://localhost:3000</li>
+
+    <h2>We provide the following functionality:</h2>
+
+    <section id="full_retrieve">
+        <h3>1. Retrieve the full dataset</h3>
+        <p>
+            <strong>Description</strong>: get a list of all items stored in the database<br>
+            <strong>Endpoint</strong>: /products<br>
+            <strong>HTTP methods</strong>: GET (Safe - this is a read-only operation, it does not alter the values of the database on the server) <br>
+            <strong>Content-Type</strong>: application/json <br>
+            <strong>Request Parameters</strong>: NONE <br>
+            <strong>Example Request</strong>:<br> 
+            <code>
+              GET /products HTTP/1.1<br>
+              Host: localhost:3000<br>
+              User-Agent: Mozilla/5.0 Chrome/48.0.2564<br>
+            </code>
+
+            <strong>Response Codes</strong>:<br>
+              <li> <strong class="green">200</strong>: <strong class="green">OK</strong> -request success.
+                <ul>
+                  <li>Example response: (when they are 2 example items in the database)<br>
+                    <code> [<br>
+                    {<br>
+                    "id":2,<br>
+                    "brand":"Fairphone",<br>
+                    "model":"FP3",<br>
+                    "os":"Android",<br>"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Fairphone_3_modules_on_display.jpg/320px-Fairphone_3_modules_on_display.jpg",<br>
+                    "screensize":5.65<br>
+                    },<br>
+                    {<br>
+                    "id":3,<br>
+                    "brand":"Fairphone",<br>
+                    "model":"FP3",<br>
+                    "os":"Android",<br>"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Fairphone_3_modules_on_display.jpg/320px-Fairphone_3_modules_on_display.jpg",<br>"screensize":5.65<br>
+                    }<br>] </code>
+                  </li>
+                  <li>Example response: (when there are no items in the database)<br>
+                  <code>
+                    This is an empty table
+                  </code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">500</strong>: <strong class="red">Internal Server Error</strong> -internal database error which will occur in situations such as the database does not exist.
+              </li>
+        </p>
+    </section>
+
+    <section id="create">
+        <h3>2. Add new product item</h3>
+        <p>
+            <strong>Description</strong>: add data in the database for a new product item and assign a new id to the new product item<br>
+            <strong>Endpoint</strong>: /create<br>
+            <strong>HTTP methods</strong>: POST <br>
+            <strong>Content-Type</strong>: application/json <br>
+            <strong>Request Parameters</strong>: <br>
+              <li> data (JSON): the new product data in json format. <br>
+                <ul>
+                  <li>Example value: <br>
+                    <code>
+                      {<br>
+                    "brand":"Fairphone",<br>
+                    "model":"FP3",<br>
+                    "os":"Android",<br>"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Fairphone_3_modules_on_display.jpg/320px-Fairphone_3_modules_on_display.jpg",<br>
+                    "screensize":5.65<br>
+                    }<br>
+                    </code>
+                  </li>
+                </ul>
+              </li>
+            <strong>Example Request</strong>:<br> 
+            <code>
+              POST /create HTTP/1.1<br>
+              Host: localhost:3000<br>
+              User-Agent: Mozilla/5.0 Chrome/48.0.2564<br>
+              <br>
+              {"brand":"Fairphone","model":"FP3","os":"Android","image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Fairphone_3_modules_on_display.jpg320px-Fairphone_3_modules_on_display.jpg","screensize":5.65}
+            </code>
+
+            <strong>Response Codes</strong>:<br>
+              <li> <strong class="green">201</strong>: <strong class="green">Created</strong> -The request has been fulfilled and resulted in a new resource being created.
+                <ul>
+                  <li>Example response:<br>
+                    <code>
+                      Created successfully
+                    </code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">400</strong>: <strong class="red">Bad Request</strong> -the request cannot be fulfilled due to bad syntax. 
+                <ul>
+                  <li >Example response: <br>
+                      <code>Double check your JSON query if anything is empty or undefined</code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">500</strong>: <strong class="red">Internal Server Error</strong> -internal database error which will occur in situations such as the database does not exist.
+              </li>              
+        </p>
+    </section>
+
+    <section id="retrieve">
+        <h3>3. List item by ID</h3>
+        <p>
+            <strong>Description</strong>: to list the data of a specific item by ID in the database<br>
+            <strong>Endpoint</strong>: /:id<br>
+            <strong>HTTP methods</strong>: GET <br>
+            <strong>Content-Type</strong>: application/json <br>
+            <strong>Request Parameters</strong>: <br>
+              <li> ID (number): the corresponding ID of the specific data </li>
+            <strong>Example Request</strong>: (id=2)<br> 
+              <code>
+                GET /2 HTTP/1.1<br>
+                Host: localhost:3000<br>
+                User-Agent: Mozilla/5.0 Chrome/48.0.2564<br>
+              </code>
+            <strong>Response Codes</strong>:<br>
+              <li> <strong class="green">200</strong>: <strong class="green">OK</strong> -request success.
+                <ul>
+                  <li>Example response: <br>
+                    <code>
+                    {<br>
+                    "id":2,<br>
+                    "brand":"Fairphone",<br>
+                    "model":"FP3",<br>
+                    "os":"Android",<br>"image":"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Fairphone_3_modules_on_display.jpg/320px-Fairphone_3_modules_on_display.jpg",<br>
+                    "screensize":5.65<br>
+                    }<br>
+                    </code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">404</strong>: <strong class="red">Not Found</strong> -the requested id does not exist in the database.
+                <ul>
+                  <li>Example response: <br>
+                    <code>
+                      Cannot find the id
+                    </code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">500</strong>: <strong class="red">Internal Server Error</strong> -internal database error which will occur in situations such as the database does not exist.
+              </li>   
+        </p>
+    </section>
+
+    <section id="update">
+        <h3>4. Update specific item by ID</h3>
+        <p>
+            <strong>Description</strong>: change data of a specific item in the database by ID<br>
+            <strong>Endpoint</strong>: /update<br>
+            <strong>HTTP methods</strong>: PUT (idempotent - multiple identical requests will only result in one outcome on the server)<br>
+            <strong>Content-Type</strong>: application/json <br>
+            <strong>Request Parameters</strong>: <br>
+              <li> data (JSON): the new product data in json format. <br>
+                <ul>
+                  <li>Example value: <br>
+                    <code>
+                      {<br>
+                      "id": 2,<br>
+                      "brand":"Iphone",<br>
+                      "model":"X",<br>
+                      "os":"IOS",<br>"image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.apple.com%2Fnl%2Fnewsroom%2F2017%2F09%2Fthe-future-is-here-iphone-x%2F&psig=AOvVaw0oGmnjP725tb1oVc2UfXtS&ust=1643314206614000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOj_5c6c0PUCFQAAAAAdAAAAABAM",<br>
+                      "screensize":5.8<br>
+                    }<br>
+                    </code>
+                  </li>
+                </ul>
+              </li>
+            <strong>Example Request</strong>:<br> 
+            <code>
+              PUT /update HTTP/1.1<br>
+              Host: localhost:3000<br>
+              User-Agent: Mozilla/5.0 Chrome/48.0.2564<br>
+              <br>
+              {"id": 2,"brand":"Iphone","model":"X","os":"IOS","image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.apple.com%2Fnl%2Fnewsroom%2F2017%2F09%2Fthe-future-is-here-iphone-x%2F&psig=AOvVaw0oGmnjP725tb1oVc2UfXtS&ust=1643314206614000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOj_5c6c0PUCFQAAAAAdAAAAABAM","screensize":5.8}
+            </code>
+
+            <strong>Response Codes</strong>:<br>
+              <li> <strong class="green">204</strong>: <strong class="green">No Content</strong> -the server successfully processed the request, but is not returning any content.
+              </li>
+              <li> <strong class="red">400</strong>: <strong class="red">Bad Request</strong> -the request cannot be fulfilled due to bad syntax. 
+                <ul>
+                  <li >Example response: <br>
+                      <code>Double check your JSON query if anything is empty or undefined</code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">404</strong>: <strong class="red">Not Found</strong> -the requested id does not exist in the database.
+                <ul>
+                  <li>Example response: <br>
+                    <code>
+                      Cannot find the id
+                    </code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">500</strong>: <strong class="red">Internal Server Error</strong> -internal database error which will occur in situations such as the database does not exist.
+              </li>  
+        </p>        
+    </section>
+
+    <section id="delete">
+        <h3>5. Delete data of item by ID</h3>
+        <p>
+            <strong>Description</strong>: remove data of a specific item in the database by ID<br>
+            <strong>Endpoint</strong>: /delete/:id<br>
+            <strong>HTTP methods</strong>: DELETE (idempotent - multiple identical requests will only result in one outcome on the server)<br>
+            <strong>Content-Type</strong>: application/json <br>
+            <strong>Request Parameters</strong>: <br>
+              <li> ID (number): the corresponding ID of the to-be-deleted data </li>
+            <strong>Example Request</strong>: (id=4)<br> 
+              <code>
+                DELETE /delete/4 HTTP/1.1<br>
+                Host: localhost:3000<br>
+                User-Agent: Mozilla/5.0 Chrome/48.0.2564<br>
+              </code>
+
+            <strong>Response Codes</strong>:<br>
+              <li> <strong class="green">204</strong>: <strong class="green">No Content</strong> -the server successfully processed the request, but is not returning any content.
+              </li>
+              <li> <strong class="red">404</strong>: <strong class="red">Not Found</strong> -the requested id does not exist in the database.
+                <ul>
+                  <li>Example response: <br>
+                    <code>
+                      Cannot find the id
+                    </code>
+                  </li>
+                </ul>
+              </li>
+              <li> <strong class="red">500</strong>: <strong class="red">Internal Server Error</strong> -internal database error which will occur in situations such as the database does not exist.
+              </li>  
+        </p>  
+    </section>
+
+    <section id="reset">
+        <h3>6. Reset</h3>
+        <p>
+            <strong>Description</strong>: reset the database to an empty one<br>
+            <strong>Endpoint</strong>: /reset<br>
+            <strong>HTTP methods</strong>: DELETE<br>
+            <strong>Content-Type</strong>: application/json <br>
+            <strong>Request Parameters</strong>: NONE<br>
+            <strong>Example Request</strong>:<br> 
+              <code>
+                DELETE /reset HTTP/1.1<br>
+                Host: localhost:3000<br>
+                User-Agent: Mozilla/5.0 Chrome/48.0.2564<br>
+              </code>
+
+            <strong>Response Codes</strong>:<br>
+              <li> <strong class="green">204</strong>: <strong class="green">No Content</strong> -the server successfully processed the request, but is not returning any content.
+              </li>
+              <li> <strong class="red">500</strong>: <strong class="red">Internal Server Error</strong> -internal database error which will occur in situations such as the database does not exist.
+              </li>
+        </p>  
+    </section>    
+</body>
